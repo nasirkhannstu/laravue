@@ -10,15 +10,46 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                        <div class="form-group{{ $errors->has('fullname') ? ' has-error' : '' }}">
+                            <label for="fullname" class="col-md-4 control-label">Full Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="fullname" type="text" class="form-control" name="fullname" value="{{ old('fullname') }}" required autofocus>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('fullname'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('fullname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('nicname') ? ' has-error' : '' }}">
+                            <label for="nicname" class="col-md-4 control-label">Nic Name</label>
+
+                            <div class="col-md-6">
+                                <input id="nicname" type="text" class="form-control" name="nicname" value="{{ old('nicname') }}" required autofocus>
+
+                                @if ($errors->has('nicname'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('nicname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+                            <label for="gender" class="col-md-4 control-label">Gender</label>
+
+                            <div class="col-md-6">
+                                <select name="gender" id="gender" class="form-control">
+                                    <option value="1">Male</option>
+                                    <option value="0">Female</option>
+                                </select>
+
+                                @if ($errors->has('gender'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('gender') }}</strong>
                                     </span>
                                 @endif
                             </div>

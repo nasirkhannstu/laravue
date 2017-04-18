@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Profile;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -52,6 +53,7 @@ class RegisterController extends Controller
             'nicname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'gender' => 'required|bool',
         ]);
     }
 
@@ -63,11 +65,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if($data['gender']){
+            $avatar = 'public/defaults/avatar/male.jpg';
+        }else{
+            $avatar = 'public/defaults/avatar/female.jpg';
+        }
         $user = User::create([
             'fullname' => $data['fullname'],
             'nicname' => $data['nicname'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password'])
+            'gender' => $data['gender'],
+            'password' => bcrypt($data['password']),
+            'avatar' => $avatar
         ]);
+
+        Profile::create(['user_id' => $user->id ]);
+
+        $mixedslug = $user->id.'-'.$data['nicname'];
+        $user->slug = str_slug($mixedslug);
+        $user->save();
+
+        return $user;
     }
 }

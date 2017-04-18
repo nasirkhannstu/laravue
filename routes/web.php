@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['middleware' => 'auth'], function(){
+	Route::get('profile/edit/profile','ProfileController@edit')->name('profile.edit');
+	Route::post('profile/account/update','ProfileController@accountUpdate')->name('account.update');
+	Route::post('profile/update/profile','ProfileController@profileUpdate')->name('profile.update');
+	//Last Route of this group
+	Route::get('profile/{slug}','ProfileController@index')->name('profile.index');
+});
