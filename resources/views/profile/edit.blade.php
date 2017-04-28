@@ -6,6 +6,7 @@
 		<div class="col-md-3">
 			<div class="panel panel-default">
 				<form action="{{route('account.update')}}" method="post" enctype="multipart/form-data">
+				{{Session::get('success')}}
 				{{ csrf_field() }}
 					<div class="panel-heading">
 						<img src="{{Storage::url($user->avatar)}}" width="100%">
@@ -15,7 +16,7 @@
 						</div>
 					</div>
 					<div class="panel-body">
-						<strong>Email: {{$user->email}}</strong><br>
+						<strong>Email: {{$user->email}}</strong><br><br>
 						<div class="form-group">
 							<label for="fullname">Full Name</label><br>
 							<input type="text" name="fullname" style="border:0px;border-bottom:2px solid;" value="{{$user->fullname}}">
@@ -45,19 +46,19 @@
 						</div>
 						<div class="form-group">
 							<label for="fb">Facebook</label><br>
-							<input type="text" value="{{$user->profile->fb}}" name="fb" placeholder="Ex: www.fb.com/profile/nasirkhan" class="form-control">
+							<input type="text" value="{{$user->profile->fb}}" name="fb" placeholder="Ex: www.fb.com/profile/nasirkhan" style="border:0px;border-bottom:2px solid;width:100%;">
 						</div>
 						<div class="form-group">
 							<label for="district">District</label><br>
-							<input type="text" value="{{$user->profile->district}}" name="district" placeholder="Ex: Dhaka" class="form-control">
+							<input type="text" value="{{$user->profile->district}}" name="district" placeholder="Ex: Dhaka" style="border:0px;border-bottom:2px solid;">
 						</div>
 						<div class="form-group">
 							<label for="postcode">Postal Code</label><br>
-							<input type="number" value="{{$user->profile->postcode}}" name="postcode" placeholder="Ex: 1400" class="form-control">
+							<input type="number" value="{{$user->profile->postcode}}" name="postcode" placeholder="Ex: 1400" style="border:0px;border-bottom:2px solid;">
 						</div>
 						<div class="form-group">
 							<label for="about">About Yourself</label><br>
-							<textarea name="about" id="about" cols="30" rows="5" class="form-control">{{$user->profile->about}}</textarea>
+							<textarea name="about" id="about" rows="4" style="border:0px;border-bottom:2px solid;width:100%">{{$user->profile->about}}</textarea>
 						</div>
 						<div class="form-group">
 							<p class="text-center">

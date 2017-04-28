@@ -1,14 +1,18 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Example Component</div>
-
+                    <div class="panel-heading">
+                        Vue page
+                    </div>
                     <div class="panel-body">
-                        I'm an example component!
+                        This is about page
                     </div>
                 </div>
+            </div>
+            <div class="col-md-4">
+                Nasir Khan About
             </div>
         </div>
     </div>
@@ -17,7 +21,7 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+            console.log('Component Mounted')
         }
     }
 </script>
