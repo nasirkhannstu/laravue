@@ -24,6 +24,10 @@ class CreateProfilesTable extends Migration
             $table->integer('postcode')->nullable();
 
             $table->text('about')->nullable();
+
+            $table->boolean('blood')->default(1)->unsigned();
+            $table->string('bloodgroup')->nullable();
+
             $table->timestamps();
         });
     }

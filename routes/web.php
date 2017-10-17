@@ -1,23 +1,13 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('auth.login');
 });
 Route::get('/vuetest', function () {
     return \App\User::with('profile')->get();
 });
-
 
 Auth::routes();
 
@@ -29,8 +19,42 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('profile/update/profile','ProfileController@profileUpdate')->name('profile.update');
 	
 	Route::get('/check_relationship_status/{id}', 'FriendshipController@check')->name('check');
+
 	Route::get('/add_friend/{id}', 'FriendshipController@add_friend')->name('add_friend');
 	Route::get('/accept_friend/{id}', 'FriendshipController@accept_friend')->name('accept_friend');
+	Route::get('/notifications', 'HomeController@notifications')->name('notifications');
+	Route::post('/create/post', 'PostController@store')->name('create.post');
+
+
+	Route::get('/feed', 'FeedController@feed')->name('feed');
+	Route::get('/like/{id}', 'LikeController@like')->name('like');
+	Route::get('/unlike/{id}', 'LikeController@unlike')->name('unlike');
+	
+	Route::get('/search/blood_donars', 'DonarController@bloodDonars')->name('bloodDonars');
+	Route::get('/blood', 'DonarController@blood')->name('search.blood');
+	Route::get('/check_donation_status/{id}', 'DonarController@check')->name('donar.check');
+	Route::get('/request/{id}', 'DonarController@request')->name('request');
+	Route::get('/cancelrequest/{id}', 'DonarController@cancelrequest')->name('cancelrequest');
+	Route::post('/new_doner', 'DonarController@newDoner')->name('newDoner');
+	Route::get('/cancel_doner', 'DonarController@cancelDoner')->name('cancelDoner');
+	Route::get('/user_all_donation_requests', 'DonarController@getAllDonars');
+	Route::get('/accept_donation_request/{id}', 'DonarController@acceptDonars');
+	Route::get('/check_auth_donation_status', 'DonarController@check_donation_status');
+	Route::get('/get_accepted_donars', 'DonarController@get_accepted_donars');
+
+	Route::get('/news-feed', 'FeedController@showFeed')->name('showFeed');
+
+// 	Route::get('/news-feed', function () {
+// 	return view('feed.feed');
+// });
+	Route::get('/get_auth_user_data', function(){
+		return Auth::user();
+	});
+
+	//Notifications
+	Route::get('/get_unread', function(){
+		return Auth::user()->unreadNotifications;
+	});
 	
 	//Last Route of this group
 	Route::get('profile/{slug}','ProfileController@index')->name('profile.index');

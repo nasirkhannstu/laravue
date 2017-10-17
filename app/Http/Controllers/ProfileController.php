@@ -12,7 +12,9 @@ class ProfileController extends Controller
 {
     public function index($slug){
     	$user = User::where('slug', $slug)->first();
-    	return view('profile.profile')->withUser($user);
+        $profile = Profile::where('user_id', $user->id)->first();
+        //dd($profile);
+    	return view('profile.profile')->withUser($profile);
     }
 
     public function edit(){
