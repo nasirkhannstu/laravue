@@ -50,6 +50,14 @@ export const store = new Vuex.Store({
 		auth_user_data(state, user){
 			state.auth_user = user
 		},
+		update_post_comment(state, payload){
+			var post = state.posts.find( (p) => {
+				if(p.feed.type == 'post'){
+					return p.post.id === payload.id
+				}
+			})
+			post.post.comments.push(payload.comment)
+		},
 		update_post_like(state, payload){
 			var post = state.posts.find( (p) => {
 				if(p.feed.type == 'post'){

@@ -40,6 +40,9 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany('App\Post');
     }
+    public function pages(){
+        return $this->hasMany('App\Page');
+    }
     public function getAvatarAttribute($avatar){
         return asset(Storage::url($avatar));
     }

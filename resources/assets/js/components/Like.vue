@@ -12,13 +12,13 @@
         <span v-if="likecount == 2">and {{likecount - 1}} another</span>
         <span v-if="likecount > 2">and {{likecount - 1}} others</span>
         <span v-if="likecount == 1">liked this</span>
-        <span> 3 comments</span>
+        <span> {{commentcount}} comments</span>
     </span>
     <span class="pull-right text-muted" v-else>
 
         <span v-if="likecount == 1"><i class="fa fa-thumbs-o-up"></i> 1 Like</span>
         <span v-if="likecount > 1"><i class="fa fa-thumbs-o-up"></i> {{likecount}}</span>
-        <span> 3 comments</span>
+        <span> {{commentcount}} comments</span>
     </span>  
 </div>
 </template>
@@ -64,6 +64,9 @@
             },
             likecount(){
                 return this.likers.length
+            },
+            commentcount(){
+                return this.post.post.comments.length
             },
             auth_user_likes_post(){
                 var check_index = this.likers.indexOf(

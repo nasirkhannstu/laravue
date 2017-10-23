@@ -27,8 +27,12 @@ Route::group(['middleware' => 'auth'], function(){
 
 
 	Route::get('/feed', 'FeedController@feed')->name('feed');
+	Route::get('/pagefeed/{id}', 'FeedController@pagefeed')->name('pagefeed');
+
 	Route::get('/like/{id}', 'LikeController@like')->name('like');
 	Route::get('/unlike/{id}', 'LikeController@unlike')->name('unlike');
+
+	Route::post('/create/comment', 'CommentController@createComment')->name('createComment');
 	
 	Route::get('/search/blood_donars', 'DonarController@bloodDonars')->name('bloodDonars');
 	Route::get('/blood', 'DonarController@blood')->name('search.blood');
@@ -43,6 +47,11 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/get_accepted_donars', 'DonarController@get_accepted_donars');
 
 	Route::get('/news-feed', 'FeedController@showFeed')->name('showFeed');
+
+	//Create Store
+	Route::get('/start-business', 'PageController@createBusiness')->name('createBusiness');
+	Route::post('/start-business', 'PageController@createStore')->name('createStore');
+	Route::get('/store/{slug}', ['as' => 'viewStore', 'uses' => 'PageController@viewStore'])->where('slug', '[\w\d\-\_]+');
 
 // 	Route::get('/news-feed', function () {
 // 	return view('feed.feed');

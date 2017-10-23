@@ -19,6 +19,7 @@
         </div>
       </div>
       <div class="box-body" style="display: block;">
+        <img :src="pos.post.image" alt="Photo" class="img-responsive pad">
         <p>{{pos.post.content}}</p>
         <like :id="pos.post.id"></like>
       </div>

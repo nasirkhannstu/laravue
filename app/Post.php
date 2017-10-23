@@ -7,14 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-	public $with = ['user', 'likes'];
+	public $with = ['user', 'likes', 'comments'];
 
-    protected $fillable = ['content', 'user_id', 'created_at'];
+    protected $fillable = ['content', 'user_id', 'page_id', 'type', 'image', 'created_at'];
 
     public function user(){
     	return $this->belongsTo('App\User');
     }
     public function likes(){
     	return $this->hasMany('App\Like');
+    }
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
+    public function getImageAttribute($image){
+        return url('uploads/storeProduct/'.$image);
     }
 }

@@ -16,6 +16,10 @@ Vue.component('init', require('./components/Init.vue'));
 Vue.component('profilehead', require('./components/profile/Profilehead.vue'));
 
 Vue.component('feed', require('./components/Feed.vue'));
+Vue.component('storefeed', require('./components/page/Storefeed.vue'));
+
+Vue.component('comment', require('./components/comment/Comment.vue'));
+
 Vue.component('post', require('./components/Post.vue'));
 Vue.component('friend', require('./components/Friend.vue'));
 Vue.component('unread', require('./components/UnreadNotes.vue'));

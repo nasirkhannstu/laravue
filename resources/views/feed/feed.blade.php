@@ -8,7 +8,7 @@
   </div>
   <div class="col-md-7">
 	<post></post>
-	<feed></feed>    
+	<feed></feed>
   </div>
 </div>
 @endsection

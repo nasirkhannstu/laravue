@@ -74,9 +74,23 @@ class FeedController extends Controller
                 array_push($userfeed, $feed);
             }
         }
-
-        //dd($userfeed);
-
+        usort($userfeed, function($p1, $p2){
+            return $p1['feed']['created_at'] < $p2['feed']['created_at'];
+        });
+        return $userfeed;
+    }
+    public function pagefeed($id){
+        $feeds = Feed::all();
+        $userfeed = array();
+        foreach($feeds as $feed){
+            if($feed->type == 'post'){
+                if($post = Post::where('id',$feed->type_id)->where('page_id', $id)->first()){
+                    $feed->data = json_decode($feed->data);
+                    $feed = ['feed' => $feed, 'post' => $post];
+                    array_push($userfeed, $feed);
+                }
+            }
+        }
         usort($userfeed, function($p1, $p2){
             return $p1['feed']['created_at'] < $p2['feed']['created_at'];
         });
