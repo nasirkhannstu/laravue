@@ -30,7 +30,11 @@ class PostController extends Controller
 		$post = Post::create([
 			'user_id' => Auth::id(),
 			'page_id' => $request->page_id,
-			'type' => 'product',
+			'type' => $request->type,
+			'name' => $request->name,
+			'price' => $request->price,
+			'qty' => $request->qty,
+			'discount' => $request->discount,
 			'image' => $fileName,
 			'content' => $request->content
 		]);

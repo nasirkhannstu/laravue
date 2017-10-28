@@ -9,7 +9,7 @@ class Post extends Model
 {
 	public $with = ['user', 'likes', 'comments'];
 
-    protected $fillable = ['content', 'user_id', 'page_id', 'type', 'image', 'created_at'];
+    protected $fillable = ['content', 'user_id', 'page_id', 'type', 'name', 'price', 'qty', 'discount', 'image', 'created_at'];
 
     public function user(){
     	return $this->belongsTo('App\User');

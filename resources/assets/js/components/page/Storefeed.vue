@@ -1,7 +1,6 @@
 <template>
 <div>
   <div v-for="pos in posts">
-    
     <div class="box box-widget" v-if="pos.feed.type == 'post'">
       <div class="box-header with-border">
         <div class="user-block">
@@ -20,7 +19,12 @@
       </div>
       <div class="box-body" style="display: block;">
         <img :src="pos.post.image" alt="Photo" class="img-responsive pad">
+        <h4><strong>{{pos.post.name}}</strong></h4>
         <p>{{pos.post.content}}</p>
+        <p v-if="pos.post.price">Price: <strong>{{pos.post.price}}</strong></p>
+        <p v-if="pos.post.qty">Available Quantity: <strong>{{pos.post.qty}}</strong></p>
+        <p v-if="pos.post.discount"><button class="btn btn-success">Order Now</button> & get {{pos.post.discount}}% discount</p>
+
         <like :id="pos.post.id"></like>
       </div>
       <comment :id="pos.post.id"></comment>

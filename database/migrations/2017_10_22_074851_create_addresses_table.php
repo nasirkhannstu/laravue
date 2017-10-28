@@ -17,12 +17,12 @@ class CreateAddressesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('page_id');
-            $table->string('address');
-            $table->integer('district_id');
-            $table->string('thana_id');
-            $table->string('zip');
-            $table->string('phone');
-            $table->string('email');
+            $table->string('address')->nullable();
+            $table->integer('district_id')->nullable();
+            $table->string('thana_id')->nullable();
+            $table->string('zip')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }

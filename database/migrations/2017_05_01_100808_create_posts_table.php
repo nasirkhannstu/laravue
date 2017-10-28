@@ -17,7 +17,11 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('page_id');
+            $table->string('name');
             $table->string('type');
+            $table->integer('price')->nullable();
+            $table->integer('qty')->nullable();
+            $table->integer('discount')->nullable();
             $table->string('image');
             $table->text('content');
             $table->timestamps();

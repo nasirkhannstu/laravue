@@ -1,7 +1,7 @@
 <template>
 <div class="">
+  
   <div v-for="pos in posts">
-    
     <div class="box box-widget" v-if="pos.feed.type == 'post'">
       <div class="box-header with-border">
         <div class="user-block">
@@ -20,35 +20,17 @@
       </div>
       <div class="box-body" style="display: block;">
         <img :src="pos.post.image" alt="Photo" class="img-responsive pad">
+        <h4><strong>{{pos.post.name}}</strong></h4>
         <p>{{pos.post.content}}</p>
+        <p v-if="pos.post.price"><strong>Product Price: {{pos.post.price}}</strong></p>
+        <p v-if="pos.post.qty"><strong>Available Quantity: {{pos.post.qty}}</strong></p>
+        <p v-if="pos.post.discount">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" @click="showMore(pos.post.id)"><i class="fa fa-pencil margin-r-5"></i>Show More</button>
+        </p>
+
         <like :id="pos.post.id"></like>
       </div>
-      <div class="box-footer box-comments" style="display: block;">
-        <div class="box-comment">
-          <!-- User image -->
-          <img class="img-circle img-sm" src="img/user3-128x128.jpg" alt="User Image">
-
-          <div class="comment-text">
-                <span class="username">
-                  Maria Gonzales
-                  <span class="text-muted pull-right">8:03 PM Today</span>
-                </span><!-- /.username -->
-            It is a long established fact that a reader will be distracted
-            by the readable content of a page when looking at its layout.
-          </div>
-          <!-- /.comment-text -->
-        </div>
-        <!-- /.box-comment -->
-      </div>
-      <div class="box-footer" style="display: block;">
-        <form action="#" method="post">
-          <img class="img-responsive img-circle img-sm" src="img/user4-128x128.jpg" alt="Alt Text">
-          <!-- .img-push is used to add margin to elements next to floating images -->
-          <div class="img-push">
-            <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
-          </div>
-        </form>
-      </div>
+      <comment :id="pos.post.id"></comment>
     </div>
     <div class="small-box bg-red" v-else-if="pos.feed.type == 'blood'">
       <div class="inner text-center">
@@ -77,6 +59,7 @@
       </a>
     </div>
   </div>
+  <productdisplay :id="clicked"></productdisplay>
 </div>
 </template>
 
@@ -86,7 +69,7 @@ import like from './Like.vue'
     export default {
         data(){
             return{
-                
+                clicked:'',
             }
         },
         components:{
@@ -103,6 +86,9 @@ import like from './Like.vue'
                     })
                     //console.log(post)
                 })
+            },
+            showMore(id){
+                this.clicked = id
             }
         },
         computed:{

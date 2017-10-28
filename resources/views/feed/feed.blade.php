@@ -7,7 +7,6 @@
     @include ('partials._leftsidebar')    
   </div>
   <div class="col-md-7">
-	<post></post>
 	<feed></feed>
   </div>
 </div>

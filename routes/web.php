@@ -50,7 +50,12 @@ Route::group(['middleware' => 'auth'], function(){
 
 	//Create Store
 	Route::get('/start-business', 'PageController@createBusiness')->name('createBusiness');
+
+	Route::get('/page_info/{id}', 'PageController@pageInfo')->name('pageInfo');
+	Route::post('/save_page_info', 'PageController@savepageinfo')->name('savepageinfo');
+
 	Route::post('/start-business', 'PageController@createStore')->name('createStore');
+	Route::get('/Edit-Store-Info/{slug}', 'PageController@editStoreInfo')->name('editStoreInfo')->where('slug', '[\w\d\-\_]+');
 	Route::get('/store/{slug}', ['as' => 'viewStore', 'uses' => 'PageController@viewStore'])->where('slug', '[\w\d\-\_]+');
 
 // 	Route::get('/news-feed', function () {

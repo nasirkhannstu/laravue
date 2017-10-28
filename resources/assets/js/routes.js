@@ -8,7 +8,7 @@ let routes=[
 	path:'/about',
 	component:require('./components/About')
 },{
-	path:'/profile',
+	path:'/profilee',
 	component:require('./components/Profile')
 }
 ];

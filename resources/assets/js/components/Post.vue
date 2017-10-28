@@ -2,21 +2,30 @@
 <div class="">
     <div class="panel panel-default">
         <div class="panel-body">
-            <input class="form-control feed-form" rows="3" v-model="name" placeholder="Product Name">
+            <div class="row">
+                <div class="col-xs-7">
+                    <input class="form-control feed-form" rows="3" v-model="name" placeholder="Product Name">
+                </div>
+                <div class="col-xs-5">
+                    <select v-model="type" class="form-control">
+                        <option disabled value="">Type</option>
+                        <option value="product">Product</option>
+                        <option value="product">Offer</option>
+                        <option value="product">Speech</option>
+                    </select>
+                </div>
+            </div>
             <textarea class="form-control feed-form" rows="3" v-model="content" placeholder="Product Description"></textarea>
             <br>
             <div class="row">
-                <div class="col-xs-3">
-                    
+                <div class="col-xs-4">
+                    <input class="form-control feed-form" rows="3" v-model="price" placeholder="Price">
                 </div>
-                <div class="col-xs-3">
-                    <strong>Type</strong>
+                <div class="col-xs-4">
+                    <input class="form-control feed-form" rows="3" v-model="qty" placeholder="Quantity">
                 </div>
-                <div class="col-xs-3">
-                    <strong>Price</strong>
-                </div>
-                <div class="col-xs-3">
-                    <strong>Discount</strong>
+                <div class="col-xs-4">
+                    <input class="form-control feed-form" rows="3" v-model="discount" placeholder="Discount(%)" @blur="discount()">
                 </div>
             </div>
             <br>
@@ -39,7 +48,12 @@
     export default {
         data(){
             return{
+                name:'',
                 content:'',
+                type:'',
+                price:'',
+                qty:'',
+                discount:'',
                 not_working: true,
                 image: ''
             }
@@ -64,11 +78,22 @@
                 axios.post('/create/post', { 
 
                 page_id: this.page_id,
+                name: this.name,
+                type: this.type,
+                price: this.price,
+                qty: this.qty,
+                discount: this.discount,
                 content: this.content,
                 image: this.image
 
                 }).then((resp)=>{
                     this.content = ''
+                    this.image = ''
+                    this.name = ''
+                    this.type = ''
+                    this.price = ''
+                    this.qty = ''
+                    this.discount = ''
                     this.image = ''
                     this.$store.commit('update_post',{
                         post:resp.data
@@ -81,6 +106,9 @@
 
                     console.log(resp)
                 })
+            },
+            discount(){
+                
             }
         },
         watch:{
@@ -97,8 +125,13 @@
 <style scoped>
     .feed-form{
         border:none;
+        border-bottom: 1px solid #f1f1f1;
         resize: none;
         background:#ffffff;
+    }
+    select{
+        border:none;
+        border-bottom: 1px solid #f1f1f1;
     }
     img{
         max-height: 50px;

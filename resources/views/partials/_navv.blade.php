@@ -30,7 +30,7 @@
                 @if (Auth::guest())
                     <router-link to="/" tag="li"><a>Home</a></router-link>
                     <router-link to="/about" tag="li"><a>About</a></router-link>
-                    <router-link to="/profile" tag="li"><a>Profile</a></router-link>
+                    <router-link to="/profilee" tag="li"><a>Profile</a></router-link>
 
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>

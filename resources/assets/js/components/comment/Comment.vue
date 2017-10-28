@@ -12,7 +12,7 @@
                 {{pos.content}}
               </div>
             </div>
-        </div>        
+        </div>
     </div>
     <div class="box-footer" style="display: block;">
         <img class="img-responsive img-circle img-sm" src="http://localhost:8000/uploads/storeProduct/1508653068-4-1.jpeg" alt="Alt Text">
