@@ -52,7 +52,7 @@ export const store = new Vuex.Store({
 		},
 		update_post_comment(state, payload){
 			var post = state.posts.find( (p) => {
-				if(p.feed.type == 'post'){
+				if(p.feed == 'product'){
 					return p.post.id === payload.id
 				}
 			})
@@ -60,7 +60,7 @@ export const store = new Vuex.Store({
 		},
 		update_post_like(state, payload){
 			var post = state.posts.find( (p) => {
-				if(p.feed.type == 'post'){
+				if(p.feed == 'product'){
 					return p.post.id === payload.id
 				}
 			})
@@ -68,7 +68,7 @@ export const store = new Vuex.Store({
 		},
 		unlike_post(state, payload){
 			var post = state.posts.find( (p) => {
-				if(p.feed.type == 'post'){
+				if(p.feed == 'product'){
 					return p.post.id === payload.post_id
 				}
 			})

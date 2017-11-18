@@ -35,20 +35,33 @@
   </div>
 </div>
 <!-- /.Services -->
-<div class="info-box bg-red">
-  <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
-  <div class="info-box-content">
-    <span class="info-box-text"><a href="{{route('search.blood')}}" style="color:white">Blood Doners</a></span>
-    <span class="info-box-number">41,410</span>
-
-    <div class="progress">
-      <div class="progress-bar" style="width: 70%"></div>
-    </div>
-        <span class="progress-description">
-          70% Increase in 30 Days
-        </span>
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title"><a href="">Create Store</a></h3>
+    <p>A store helps you to reach your customer!</p>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+      <ul class="nav nav-stacked">
+      @foreach(Auth::user()->pages as $page)
+        <li><a href="{{route('viewStore', $page->slug)}}">{{$page->name}}<span class="pull-right badge bg-blue">{{$page->posts->count()}}</span></a></li>
+      @endforeach
+      </ul>
   </div>
 </div>
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title"><a href="">Introduce Your Service</a></h3>
+    <p>Get more audiance to your service!</p>
+  </div>
+</div>
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title"><a href="{{route('search.blood')}}">Donate Blood</a></h3>
+    <p>Get and give blood! </p>
+  </div>
+</div>
+
 <!-- About Me Box -->
 <div class="box box-primary">
   <div class="box-header with-border">

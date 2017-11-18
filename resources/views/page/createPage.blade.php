@@ -23,8 +23,22 @@
         	{{csrf_field()}}
           <div class="box-body">
             <div class="form-group">
-              <label for="exampleInputEmail1">Store Name</label>
+              <label>Store Name</label>
               <input type="text" name="name" class="form-control" placeholder="...">
+            </div>
+            <div class="form-group">
+              <label>Platform Type</label>
+              <select name="type" class="form-control">
+                <option value="Product">Product(Store)</option>
+                <option value="Service">Service</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Platform Sub-Type</label>
+              <select name="subtype" class="form-control">
+                <option value="Product">Product(Store)</option>
+                <option value="Service">Service</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Store Unique Name</label>

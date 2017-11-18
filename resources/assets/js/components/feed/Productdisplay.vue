@@ -5,7 +5,7 @@
         <div class="modal-content">
           
           <div class="box-body">
-            <p class="text-info"><strong>{{varr}}{{id}}</strong></p>
+            <p class="text-info"><strong>{{varr}}{{id}} is id.</strong></p>
         </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -21,17 +21,23 @@
     export default {
         data(){
             return{
-                varr: '',
+                varr:'',
+                post:[],
             }
         },
         mounted() {
-            this.varr = this.id
-            console.log(this.id)
+            this.varr = this.id,
+            this.post = this.$store.getters.all_posts.find( (p) => {
+                if(p.feed.type == 'post'){
+                    return p.post.id === this.id
+                }
+            })
+            console.log(this.post)
         },
-        id: ['id'],
+        props: ['id'],
         methods:{
-            create_post(){
-                axios.post('/save_page_info', this.requests).then( (response)=>{
+            get_post(){
+                axios.get('/get_this_post', this.requests).then( (response)=>{
                     this.msg = response.data.msg
                     console.log(this.msg)
                     // if(response.errors){

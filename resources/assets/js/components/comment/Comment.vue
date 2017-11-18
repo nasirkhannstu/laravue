@@ -76,7 +76,7 @@
             },
             post(){
                 return this.$store.state.posts.find((post) =>{
-                    if(post.feed.type == 'post'){
+                    if(post.feed == 'product'){
                         return post.post.id == this.id
                     }
                 })

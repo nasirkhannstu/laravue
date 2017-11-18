@@ -44,6 +44,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Page');
     }
     public function getAvatarAttribute($avatar){
-        return asset(Storage::url($avatar));
+        return url('uploads/userpp/'.$avatar);
     }
 }

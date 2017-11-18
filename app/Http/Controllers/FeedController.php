@@ -40,7 +40,7 @@ class FeedController extends Controller
                 array_push($feed, $post);
             }
         }
-        dd($feed);
+        //dd($feed);
         foreach(Auth::user()->posts as $post){
             array_push($feed, $post);
         }
@@ -54,7 +54,7 @@ class FeedController extends Controller
         //dd($feed);
         return $feed;
     }
-    public function feed(){
+    public function feedOld(){
         $feeds = Feed::all();
         $userfeed = array();
         foreach($feeds as $feed){
@@ -79,20 +79,37 @@ class FeedController extends Controller
         });
         return $userfeed;
     }
-    public function pagefeed($id){
-        $feeds = Feed::all();
+    public function feed(){
         $userfeed = array();
-        foreach($feeds as $feed){
-            if($feed->type == 'post'){
-                if($post = Post::where('id',$feed->type_id)->where('page_id', $id)->first()){
-                    $feed->data = json_decode($feed->data);
-                    $feed = ['feed' => $feed, 'post' => $post];
-                    array_push($userfeed, $feed);
-                }
-            }
+        $page = 0;
+
+        $products = Post::orderby('id', 'desc')->skip($page*10)->take(10)->get();
+        foreach($products as $product){
+            $productfeed = ['feed' => 'product', 'post' => $product];
+            array_push($userfeed, $productfeed);
+        }
+
+        $donars = Profile::orderby('id', 'desc')->where('blood', 1)->limit(2)->get();
+        foreach($donars as $donar){
+            $donarfeed = ['feed' => 'blood', 'post' => $donar];
+            array_push($userfeed, $donarfeed);
+        }
+
+        usort($userfeed, function($p1, $p2){
+            return $p1['post']['created_at'] < $p2['post']['created_at'];
+        });
+        return $userfeed;
+    }
+    public function pagefeed($id){
+        $userfeed = array();
+
+        $products = Post::where('page_id', $id)->orderby('id', 'desc')->get();
+        foreach($products as $product){
+            $productfeed = ['feed' => 'product', 'post' => $product];
+            array_push($userfeed, $productfeed);
         }
         usort($userfeed, function($p1, $p2){
-            return $p1['feed']['created_at'] < $p2['feed']['created_at'];
+            return $p1['post']['created_at'] < $p2['post']['created_at'];
         });
         return $userfeed;
     }

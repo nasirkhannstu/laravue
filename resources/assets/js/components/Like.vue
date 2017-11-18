@@ -12,13 +12,13 @@
         <span v-if="likecount == 2">and {{likecount - 1}} another</span>
         <span v-if="likecount > 2">and {{likecount - 1}} others</span>
         <span v-if="likecount == 1">liked this</span>
-        <span> {{commentcount}} comments</span>
+        <span> {{commentcount}} Review</span>
     </span>
     <span class="pull-right text-muted" v-else>
 
         <span v-if="likecount == 1"><i class="fa fa-thumbs-o-up"></i> 1 Like</span>
         <span v-if="likecount > 1"><i class="fa fa-thumbs-o-up"></i> {{likecount}}</span>
-        <span> {{commentcount}} comments</span>
+        <span> {{commentcount}} Review</span>
     </span>  
 </div>
 </template>
@@ -79,7 +79,7 @@
             },
             post(){
                 return this.$store.state.posts.find((post) =>{
-                    if(post.feed.type == 'post'){
+                    if(post.feed == 'product'){
                         return post.post.id == this.id
                     }
                 })
